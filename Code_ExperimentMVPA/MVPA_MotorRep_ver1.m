@@ -5,6 +5,9 @@
 clear; clc;
 currentPath = pwd;
 
+%% Whether MRI or not
+isMRI = false;
+
 %% open window 
 
 % Check if Psychtoolbox is properly installed:
@@ -12,7 +15,7 @@ AssertOpenGL;
 
 % to avoid sinc problem
 Screen('Preference', 'SkipSyncTests', 1);
-s
+
 % Open up a window on the screen and clear it.
 whichScreen = max(Screen('Screens',0));
 Screen('Resolution', whichScreen, 800,600); % for resoultion
@@ -29,16 +32,17 @@ MidY = theRect(RectBottom)/2;
 
 
 %% Screen mirror
-% Translate origin into the geometric center of text:
-Screen('glTranslate', theWindow, MidX, MidY, 0);
+if ~isMRI
+    % Translate origin into the geometric center of text:
+    Screen('glTranslate', theWindow, MidX, MidY, 0);
 
-% Apple a scaling transform which flips the diretion of x-Axis,
-% thereby mirroring the drawn text horizontally:
-Screen('glScale', theWindow, 1, -1, 1);
+    % Apple a scaling transform which flips the diretion of x-Axis,
+    % thereby mirroring the drawn text horizontally:
+    Screen('glScale', theWindow, 1, -1, 1);
 
-% We need to undo the translations...
-Screen('glTranslate', theWindow, -MidX, -MidY, 0);
-    
+    % We need to undo the translations...
+    Screen('glTranslate', theWindow, -MidX, -MidY, 0);
+end
 %% set variables
 
 numRepSession = 5;
