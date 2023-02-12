@@ -1,5 +1,5 @@
 %% Notes
-% 2023/02/11 MVPA for Meta-generalization in motor adaptation
+% 2023/02/11 MVPA for Motor representations in motor adaptation
 
 %% Initialize
 clear; clc;
@@ -229,12 +229,12 @@ eval(['save ',resultFileName, ' startTimeScanning taskOrder lineDegrees']);
 cd(currentPath);
 
 for nses = 1:numSessions
-    timeStartRun{nses} = zeros([1,6]);                            % save start time of fMRI run: dim1 - nses
-    timeEndRun{nses} = zeros([1,6]);                              % save end time of fMRI run: dim1 - nses
-    timeReadyPresent{nses} = zeros([size(taskOrder{nses},1),6]);                        % save ready stimulus present time: dim1 - nses, dim2 - ntrial
-    timeTrialStart{nses} = zeros([size(taskOrder{nses},1),6]);                          % save object present time: dim1 - nses, dim2 - ntrial
-    durationTrial{nses} = zeros([size(taskOrder{nses},1),1]);                           % save object present time: dim1 - nses, dim2 - ntrial
-    checkstateTrial{nses} = zeros([size(taskOrder{nses},1),1]);
+    timeStartRun{nses} = zeros([1,6]);                                                  %#ok<SAGROW> % save start time of each session: dim1 - nses
+    timeEndRun{nses} = zeros([1,6]);                                                    %#ok<SAGROW> % save end time of each session: dim1 - nses
+    timeReadyPresent{nses} = zeros([size(taskOrder{nses},1),6]);                        %#ok<SAGROW> % save ready stimulus present time: dim1 - nses, dim2 - ntrial
+    timeTrialStart{nses} = zeros([size(taskOrder{nses},1),6]);                          %#ok<SAGROW> % save trial start time: dim1 - nses, dim2 - ntrial
+    durationTrial{nses} = zeros([size(taskOrder{nses},1),1]);                           %#ok<SAGROW> % save erasing duration: dim1 - nses, dim2 - ntrial
+    checkstateTrial{nses} = zeros([size(taskOrder{nses},1),1]);                         %#ok<SAGROW> % save how many points the sub erased: dim1 - nses, dim2 - ntrial
 end
 thePointsAll = cell(numSessions, length(taskOrder{1}));
 theTimesAll = cell(numSessions, length(taskOrder{1}));
