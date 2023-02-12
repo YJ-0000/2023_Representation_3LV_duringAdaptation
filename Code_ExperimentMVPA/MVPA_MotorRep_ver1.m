@@ -427,7 +427,7 @@ for nses = 1:numSessions
 
     cd(resultsFolder);
     resultFileName = sprintf('MVPA_MotorRep_%d%02d%02d%s%02d%02d', round(startTimeScanning(1)), round(startTimeScanning(2)), round(startTimeScanning(3)), '_', round(startTimeScanning(4)), round(startTimeScanning(5)));
-    eval(['save ',resultFileName, ' startTimeScanning timeStartRun timeEndRun timeReadyPresent timeTrialStart durationTrial checkstateTrial taskOrder sessionIdx* sessionTypes thePointsAll theTimesAll theChecksAll']);
+    eval(['save ',resultFileName, ' startTimeScanning timeStartRun timeEndRun timeReadyPresent timeTrialStart durationTrial checkstateTrial taskOrder sessionIdx* sessionTypes thePointsAll theTimesAll theChecksAll rotLineDegrees pointsDirection']);
     cd(currentPath);
     
     pause(instructionT-toc);
