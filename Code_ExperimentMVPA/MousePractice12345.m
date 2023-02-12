@@ -22,7 +22,7 @@ PsychImaging('AddTask', 'General', 'UseVirtualFramebuffer');
 MidX = theRect(RectRight)/2;
 MidY = theRect(RectBottom)/2;
  
-img=imread('MousePractice2.jpg');
+img=imread('MousePractice.jpg');
 tempsize=size(img);
 texture = Screen('MakeTexture', theWindow, img);
 texture_MousePrac=texture;
