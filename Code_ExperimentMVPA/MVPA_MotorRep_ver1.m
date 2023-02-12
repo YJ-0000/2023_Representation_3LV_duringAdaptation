@@ -344,17 +344,17 @@ for nses = 1:numSessions
 
                 % mouse trace
                 if (newCoord(1) ~= theX || newCoord(2) ~= theY)
+                    % Trial progress
+                    Screen('TextSize', theWindow, 48);
+                    process=strcat(num2str(numRealErasingTrial),'/',num2str(numRealErasingTrial_Total));
+                    Screen(theWindow,'DrawText',process,50,50,255);
+                    
                     theX = newCoord(1); theY = newCoord(2);
                     Screen('DrawDots', theWindow, newCoord', dotSize, [255 0 0],[0,0],1);
                     Screen('Flip',theWindow);
                     thePoints = [thePoints ; newCoord(1) newCoord(2)]; %#ok<AGROW>
                     theTimes = [theTimes ; toc]; %#ok<AGROW>
                     theChecks= [theChecks ; checkstate]; %#ok<AGROW>
-                    
-                    % Trial progress
-                    Screen('TextSize', theWindow, 48);
-                    process=strcat(num2str(numRealErasingTrial),'/',num2str(numRealErasingTrial_Total));
-                    Screen(theWindow,'DrawText',process,50,50,255);
                 end
                 % drawing null
 %                     Screen(theWindow,'FillRect',[0 0 0],theRect);
