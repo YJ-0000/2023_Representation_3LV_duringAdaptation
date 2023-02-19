@@ -65,7 +65,7 @@ numTotalRun = sum(numScanRuns,'all');
 
 % numObjRepPerRun = 5;                % 한 run 내에서 object/grasp 반복되는 횟수
 
-trialT = 4;                         % Erasing 수행 시간
+trialT = 3.5;                         % Erasing 수행 시간
 nullT = trialT;                     % null trial 시간
 
 readyT = 2;                       % 각 trial 전, 준비 시간 (어떤 grasp 수행 제시)
