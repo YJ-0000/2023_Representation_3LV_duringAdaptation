@@ -112,7 +112,7 @@ for nsub = sublist
                     subplot(2,3,ii+3); 
                 end
                 title(session_types{ii});
-                xlim([-400,400]); ylim([-300,300]);
+                xlim([-300,300]); ylim([-300,300]);
                 hold on;
                 for nses = 1:15
                     if session_typeidx_eachsub(nsub,nday,nses) == ii
@@ -121,7 +121,7 @@ for nsub = sublist
                             
                             if is_remove_explored_sub
                                 dist_list = sqrt(mean((points_temp - [midX,midY]).^2,2));
-                                if any(dist_list > 16*10)
+                                if any(dist_list > thres)
                                     is_tooExplored_trial(nsub,nday,nses,ntrial) = true;
                                     continue
                                 end
@@ -147,7 +147,10 @@ for nsub = sublist
 end
 
 disp(['Total ' num2str(sum(is_tooExplored_trial,'all')) ' trials are excluded, which is ' num2str(100*sum(is_tooExplored_trial,'all')/numel(is_tooExplored_trial),'%.02f') '% of ' num2str(numel(is_tooExplored_trial)) ' trials.']);
-
+num_rot_pos_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==1,[1,1,1,17])));
+num_rot_neg_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==2,[1,1,1,17])));
+num_mirror_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==3,[1,1,1,17])));
+disp(['Number of excluded trial >> rot+90: ', num2str(num_rot_pos_excluded), ', rot-90: ', num2str(num_rot_neg_excluded), ', mirror: ', num2str(num_mirror_excluded)]);
 %% performance difference
 performance_eachsub_temp = performance_eachsub;
 performance_eachsub_temp(is_tooExplored_trial) = nan;
