@@ -78,7 +78,8 @@ cd('ses-02fmri');
 day2_rawfile = dir('*.mat');
 
 % outlier_idx = [3,6,12,15,16,17,22];
-outlier_idx_temp = [];
+% outlier_idx_temp = [];
+outlier_idx_temp = outlier_idx;
 
 see_examplar_mode = false;
 if see_examplar_mode; sublist = 9; else; sublist = 1:length(subdir); end %#ok<UNRCH>
