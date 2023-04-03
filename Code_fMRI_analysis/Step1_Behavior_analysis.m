@@ -147,13 +147,14 @@ for nsub = sublist
 end
 
 disp(['Total ' num2str(sum(is_tooExplored_trial,'all')) ' trials are excluded, which is ' num2str(100*sum(is_tooExplored_trial,'all')/numel(is_tooExplored_trial),'%.02f') '% of ' num2str(numel(is_tooExplored_trial)) ' trials.']);
-num_rot_pos_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==1,[1,1,1,17])));
-num_rot_neg_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==2,[1,1,1,17])));
-num_mirror_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==3,[1,1,1,17])));
-disp(['Number of excluded trial >> rot+90: ', num2str(num_rot_pos_excluded), ', rot-90: ', num2str(num_rot_neg_excluded), ', mirror: ', num2str(num_mirror_excluded)]);
+day2_idx = false(length(subdir),2,15,17); day2_idx(:,2,:,:) = true;
+num_rot_pos_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==1,[1,1,1,17])&day2_idx));
+num_rot_neg_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==2,[1,1,1,17])&day2_idx));
+num_mirror_excluded = sum(is_tooExplored_trial(repmat(session_typeidx_eachsub==3,[1,1,1,17])&day2_idx));
+disp(['Number of excluded trial (2nd day) >> rot+90: ', num2str(num_rot_pos_excluded), ', rot-90: ', num2str(num_rot_neg_excluded), ', mirror: ', num2str(num_mirror_excluded)]);
 %% performance difference
 performance_eachsub_temp = performance_eachsub;
-performance_eachsub_temp(is_tooExplored_trial) = nan;
+% performance_eachsub_temp(is_tooExplored_trial) = nan;
 mean_perf_eachsub = zeros(length(subdir),3,2); % 3dim: subject * session_type * day 
 std_perf_eachsub = zeros(length(subdir),3,2); % 3dim: subject * session_type * day 
 for ntype = 1:3
@@ -183,5 +184,5 @@ hold off;
 
 %% save data
 cd(pathBehav); 
-save beh_results performance_eachsub session_typeidx_eachsub directionidx_eachsub is_tooExplored_trial
+save beh_results performance_eachsub session_typeidx_eachsub directionidx_eachsub is_tooExplored_trial outlier_idx
 cd(pathCurrent);
