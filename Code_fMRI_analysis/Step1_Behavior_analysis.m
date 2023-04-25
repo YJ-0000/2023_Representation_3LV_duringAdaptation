@@ -77,8 +77,6 @@ cd ..
 cd('ses-02fmri');
 day2_rawfile = dir('*.mat');
 
-% outlier_idx = [3,6,12,15,16,17,22];
-% outlier_idx_temp = [];
 outlier_idx_temp = outlier_idx;
 
 see_examplar_mode = false;
@@ -182,6 +180,26 @@ end
 % Plot the errorbars
 errorbar(x',squeeze(mean(temp,1)),1.96*squeeze(std(temp,0,1))/sqrt(22),'k','linestyle','none');
 hold off;
+
+%% statistical tests
+disp('########### Statistical Tests ##########')
+disp('#####################')
+p = signrank(temp(:,1,1),temp(:,2,1));
+disp(['Difference between rot+90 and rot-90 (day 1) >> p=', num2str(p,'%0.4f')]);
+p = signrank(temp(:,1,2),temp(:,2,2));
+disp(['Difference between rot+90 and rot-90 (day 2) >> p=', num2str(p,'%0.4f')]);
+
+disp('#####################')
+p = signrank(temp(:,1,1),temp(:,3,1));
+disp(['Difference between rot+90 and mirror (day 1) >> p=', num2str(p,'%0.4f')]);
+p = signrank(temp(:,2,1),temp(:,3,1));
+disp(['Difference between rot-90 and mirror (day 1) >> p=', num2str(p,'%0.4f')]);
+
+disp('#####################')
+p = signrank(temp(:,1,2),temp(:,3,2));
+disp(['Difference between rot+90 and mirror (day 2) >> p=', num2str(p,'%0.4f')]);
+p = signrank(temp(:,2,2),temp(:,3,2));
+disp(['Difference between rot-90 and mirror (day 2) >> p=', num2str(p,'%0.4f')]);
 
 %% save data
 cd(pathBehav); 
