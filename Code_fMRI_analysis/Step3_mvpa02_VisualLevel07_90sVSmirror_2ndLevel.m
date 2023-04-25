@@ -26,12 +26,12 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-cd('MVPA_StimDirection_90sVSmirror');
+cd('MVPA_VisualDirection_90sVSmirror');
 pathMVPA = pwd;
 mvpa_1st_subj = dir('sub-*');
 
 cd ..
-mkdir('GroupLevel_MVPA_StimDirection_90sVSmirror'); cd('GroupLevel_MVPA_StimDirection_90sVSmirror');
+mkdir('GroupLevel_MVPA_VisualLevel_90sVSmirror'); cd('GroupLevel_MVPA_VisualLevel_90sVSmirror');
 targetPath = pwd;
 
 %%

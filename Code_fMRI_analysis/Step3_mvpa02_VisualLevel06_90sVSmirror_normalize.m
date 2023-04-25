@@ -26,7 +26,7 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-cd('MVPA_StimDirection_90sVSmirror');
+cd('MVPA_VisualDirection_90sVSmirror');
 pathMVPA = pwd;
 
 %% 
