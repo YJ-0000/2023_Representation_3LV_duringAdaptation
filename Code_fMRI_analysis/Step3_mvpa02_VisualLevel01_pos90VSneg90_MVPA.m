@@ -26,7 +26,7 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-mkdir('MVPA_StimDirection_posneg90s'); cd('MVPA_StimDirection_posneg90s');
+mkdir('MVPA_VisualDirection_posneg90s'); cd('MVPA_VisualDirection_posneg90s');
 pathMVPA = pwd;
 
 %% 
