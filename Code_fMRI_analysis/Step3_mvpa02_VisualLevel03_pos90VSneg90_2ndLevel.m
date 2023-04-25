@@ -31,7 +31,7 @@ pathMVPA = pwd;
 mvpa_1st_subj = dir('sub-*');
 
 cd ..
-mkdir('GroupLevel_MVPA_StimDirection_posneg90s_smoothed'); cd('GroupLevel_MVPA_StimDirection_posneg90s_smoothed');
+mkdir('GroupLevel_MVPA_VisualLevel_posneg90s'); cd('GroupLevel_MVPA_VisualLevel_posneg90s');
 targetPath = pwd;
 
 %%

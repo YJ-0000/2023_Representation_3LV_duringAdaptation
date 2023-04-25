@@ -31,7 +31,7 @@ pathMVPA = pwd;
 mvpa_1st_subj = dir('sub-*');
 
 cd ..
-mkdir('GroupLevel_MVPA_StimDirection_posneg90s_Regression_smoothed'); cd('GroupLevel_MVPA_StimDirection_posneg90s_Regression_smoothed');
+mkdir('GroupLevel_MVPA_VisualLevel_posneg90s_Regression'); cd('GroupLevel_MVPA_VisualLevel_posneg90s_Regression');
 targetPath = pwd;
 
 %%
