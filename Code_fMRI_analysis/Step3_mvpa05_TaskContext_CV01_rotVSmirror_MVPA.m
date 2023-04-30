@@ -26,7 +26,7 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-mkdir('MVPA_TaskContext_CV_90sVSmirror'); cd('MVPA_TaskContext_CV_90sVSmirror');
+mkdir('MVPA_TaskContext_CV_rotationVSmirror'); cd('MVPA_TaskContext_CV_rotationVSmirror');
 pathMVPA = pwd;
 
 parfor nsub = 1:length(results1st_subj)

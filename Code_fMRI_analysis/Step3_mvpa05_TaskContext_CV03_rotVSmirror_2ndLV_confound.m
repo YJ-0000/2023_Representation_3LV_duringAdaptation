@@ -26,12 +26,12 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-cd('MVPA_TaskContext_CV_90sVSmirror');
+cd('MVPA_TaskContext_CV_rotationVSmirror');
 pathMVPA = pwd;
 mvpa_1st_subj = dir('sub-*');
 
 cd ..
-mkdir('GroupLevel_MVPA_TaskContext_CV_90sVSmirror_withConfound'); cd('GroupLevel_MVPA_TaskContext_CV_90sVSmirror_withConfound');
+mkdir('GroupLevel_MVPA_TaskContext_CV_rotationVSmirror_withConfound'); cd('GroupLevel_MVPA_TaskContext_CV_rotationVSmirror_withConfound');
 targetPath = pwd;
 
 %%

@@ -26,7 +26,7 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-cd('MVPA_TaskContext_CV_90sVSmirror');
+cd('MVPA_TaskContext_CV_rotationVSmirror');
 pathMVPA = pwd;
 
 %% 
