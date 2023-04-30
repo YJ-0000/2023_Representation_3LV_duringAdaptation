@@ -26,7 +26,7 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-mkdir('MVPA_VisualDirection_90sVSmirror'); cd('MVPA_VisualDirection_90sVSmirror');
+mkdir('MVPA_VisualDirection_Alltask'); cd('MVPA_VisualDirection_Alltask');
 pathMVPA = pwd;
 
 %% 
@@ -152,8 +152,8 @@ parfor nsub = 1:length(results1st_subj)
     % This creates the leave-one-run-out cross validation design:
     cfg.design = make_design_cv(cfg); 
     
-    temp_train_mat = zeros(60,8);
-    temp_test_mat = zeros(60,8);
+    temp_train_mat = zeros(60,12);
+    temp_test_mat = zeros(60,12);
     temp_train_mat(1:10,1) = 1;
     temp_test_mat(41:50,1) = 1;
     temp_train_mat(21:30,2) = 1;
@@ -170,11 +170,19 @@ parfor nsub = 1:length(results1st_subj)
     temp_test_mat(11:20,7) = 1;
     temp_train_mat(51:60,8) = 1;
     temp_test_mat(31:40,8) = 1;
+    temp_train_mat(1:10,9) = 1;
+    temp_test_mat(21:30,9) = 1;
+    temp_train_mat(21:30,10) = 1;
+    temp_test_mat(1:10,10) = 1;
+    temp_train_mat(11:20,11) = 1;
+    temp_test_mat(31:40,11) = 1;
+    temp_train_mat(31:40,12) = 1;
+    temp_test_mat(11:20,12) = 1;
 
     cfg.design.train = temp_train_mat;
     cfg.design.test = temp_test_mat;
-    cfg.design.label = repmat(cfg.design.label(:,1),[1,8]);
-    cfg.design.set = [1,1,1,1,1,1,1,1];
+    cfg.design.label = repmat(cfg.design.label(:,1),[1,12]);
+    cfg.design.set = ones(1,12);
     
     % Run decoding
     results = decoding(cfg);

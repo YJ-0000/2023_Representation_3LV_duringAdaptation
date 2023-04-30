@@ -26,40 +26,26 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-cd('MVPA_VisualDirection_90sVSmirror');
+cd('MVPA_VisualDirection_Alltask');
 pathMVPA = pwd;
 mvpa_1st_subj = dir('sub-*');
 
 cd ..
-mkdir('GroupLevel_MVPA_VisualLevel_90sVSmirror_Regression'); cd('GroupLevel_MVPA_VisualLevel_90sVSmirror_Regression');
+mkdir('GroupLevel_MVPA_VisualDirection_Alltask'); cd('GroupLevel_MVPA_VisualDirection_Alltask');
 targetPath = pwd;
 
 %%
 nscan = 0;
 for nsub = 1:length(mvpa_1st_subj)
     nscan = nscan + 1;
-    resFileList{nscan,1} = [mvpa_1st_subj(nsub).folder filesep mvpa_1st_subj(nsub).name filesep 'wres_accuracy_minus_chance.nii'];
+    resFileList{nscan,1} = [mvpa_1st_subj(nsub).folder filesep mvpa_1st_subj(nsub).name filesep 's8wres_accuracy_minus_chance.nii'];
 end
-resFileList(outlier_idx) = [];
-
-performance_eachsub(is_tooExplored_trial) = nan;
-for nsub = 1:length(mvpa_1st_subj)
-    nday = 2;
-%     mean_perf_eachsub(nsub,1) = mean(performance_eachsub(nsub,nday,:,:),'all',"omitnan");
-    mean_perf_eachsub(nsub,1) = mean(performance_eachsub(nsub,nday,squeeze(session_typeidx_eachsub(nsub,nday,:)==1),:),'all',"omitnan") ...
-        + mean(performance_eachsub(nsub,nday,squeeze(session_typeidx_eachsub(nsub,nday,:)==2),:),'all',"omitnan");
-%     mean_perf_eachsub(nsub,1) = mean(performance_eachsub(nsub,nday,squeeze(session_typeidx_eachsub(nsub,nday,:)==3),:),'all',"omitnan");
-end
-mean_perf_eachsub(outlier_idx) = [];
+resFileList(16) = [];
 
 clear matlabbatch
 % model specification    
 matlabbatch{1}.spm.stats.factorial_design.dir = {targetPath};
-matlabbatch{1}.spm.stats.factorial_design.des.mreg.scans = resFileList;
-matlabbatch{1}.spm.stats.factorial_design.des.mreg.mcov.c = mean_perf_eachsub;
-matlabbatch{1}.spm.stats.factorial_design.des.mreg.mcov.cname = 'Session accuracy';
-matlabbatch{1}.spm.stats.factorial_design.des.mreg.mcov.iCC = 1;
-matlabbatch{1}.spm.stats.factorial_design.des.mreg.incint = 1;
+matlabbatch{1}.spm.stats.factorial_design.des.t1.scans = resFileList;
 matlabbatch{1}.spm.stats.factorial_design.cov = struct('c', {}, 'cname', {}, 'iCFI', {}, 'iCC', {});
 matlabbatch{1}.spm.stats.factorial_design.multi_cov = struct('files', {}, 'iCFI', {}, 'iCC', {});
 matlabbatch{1}.spm.stats.factorial_design.masking.tm.tm_none = 1;
@@ -75,7 +61,7 @@ matlabbatch{2}.spm.stats.fmri_est.method.Classical = 1;
 % constrast
 matlabbatch{3}.spm.stats.con.spmmat(1) = cfg_dep('Model estimation: SPM.mat File', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.name = 'result';
-matlabbatch{3}.spm.stats.con.consess{1}.tcon.weights = [0,1];
+matlabbatch{3}.spm.stats.con.consess{1}.tcon.weights = 1;
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.delete = 0;
 

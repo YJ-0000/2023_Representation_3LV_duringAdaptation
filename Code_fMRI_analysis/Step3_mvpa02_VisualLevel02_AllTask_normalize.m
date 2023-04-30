@@ -26,8 +26,9 @@ path1LV = pwd;
 results1st_subj = dir('sub-*');
 
 cd ..
-cd('MVPA_VisualDirection_90sVSmirror');
+cd('MVPA_VisualDirection_Alltask');
 pathMVPA = pwd;
+
 
 %% 
 cd(currentPath);
