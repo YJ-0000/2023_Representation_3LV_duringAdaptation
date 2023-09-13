@@ -6,7 +6,7 @@ clear; clc;
 currentPath = pwd;
 
 %% Whether MRI or not
-isMRI = false;
+isMRI = true;
 
 %% open window 
 
@@ -128,11 +128,11 @@ rotTestDegrees = [90,180,270]; % (degree)
 randPoints1 = 30*[point2(:,1), -point2(:,2)] +[MidX-200, MidY+50];
 randPoints = randPoints1;
 
-
-rotRadian = -pi*90/180;
-matRot90pos = [cos(rotRadian),sin(rotRadian);-sin(rotRadian),cos(rotRadian)];
-rotRadian = -pi*(-90)/180;
-matRot90neg = [cos(rotRadian),sin(rotRadian);-sin(rotRadian),cos(rotRadian)];
+% The transformation matrices in left-handed coordinate system.
+rotRadian = pi*(90)/180;
+matRot90pos = [cos(rotRadian),-sin(rotRadian);sin(rotRadian),cos(rotRadian)];
+rotRadian = pi*(-90)/180;
+matRot90neg = [cos(rotRadian),-sin(rotRadian);sin(rotRadian),cos(rotRadian)];
 matMirror = [-1, 0; 0, 1];
 
 rotMatList = {matRot90pos, matRot90neg, matMirror};
